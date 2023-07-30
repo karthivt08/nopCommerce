@@ -9,9 +9,7 @@ timeout(time: 1, unit: 'HOURS')
 parameters { 
     booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: 'Need to archive the Build') }
 
-   triggers {
-        cron('1/30 * * * *')
-    }
+
 stages {
 
     stage ('code checkout') {
