@@ -16,7 +16,7 @@ stages {
 
     stage ('code checkout') {
         steps {
-            git branch: 'master',
+            git branch: 'develop',
     url: 'https://github.com/karthivt08/nopCommerce.git'
         }
     }
