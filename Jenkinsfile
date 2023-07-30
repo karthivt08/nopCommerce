@@ -35,7 +35,7 @@ stages {
         steps {
             sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Libraries nopcommerce'
             sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Presentation nopcommerce'
-            sh 'zip -qr nopcommerce nopcommerce.zip'
+            sh 'zip -qr nopcommerce.zip nopcommerce'
         }
 
     }
