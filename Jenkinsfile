@@ -9,6 +9,9 @@ timeout(time: 1, unit: 'HOURS')
 parameters { 
     booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: 'Need to archive the Build') }
 
+environment {
+    dotnet = "/usr/lib/dotnet/sdk"
+}
 
 stages {
 
@@ -22,7 +25,7 @@ stages {
     stage ('Build stage') {
 
         steps {
-            dotnetBuild 
+            dotnetBuild,
             project : 'src/NopCommerce.sln'
            // sh 'dotnet build src/NopCommerce.sln'
         }
