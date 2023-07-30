@@ -33,9 +33,10 @@ stages {
     stage ('archive the files') {
 
         steps {
-            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Libraries nopcommerce'
-            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Presentation nopcommerce'
-            sh 'zip -qr nopcommerce.zip nopcommerce'
+            sh 'mkdir nopcommercepckg'
+            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Libraries nopcommercepckg'
+            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Presentation nopcommercepckg'
+            sh 'zip -qr nopcommercepckg.zip nopcommercepckg'
         }
 
     }
