@@ -29,6 +29,18 @@ stages {
            sh 'dotnet build src/NopCommerce.sln'
         }
     }
+
+    stage ('archive the files') {
+
+        steps {
+            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Libraries nopcommerce'
+            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Presentation nopcommerce'
+            sh 'zip -qr nopcommerce nopcommerce.zip'
+        }
+
+    }
+
+
 }
 
 
