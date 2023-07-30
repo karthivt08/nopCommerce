@@ -25,9 +25,8 @@ stages {
     stage ('Build stage') {
 
         steps {
-            dotnetBuild,
-            project : 'src/NopCommerce.sln'
-           // sh 'dotnet build src/NopCommerce.sln'
+            
+           sh 'dotnet build src/NopCommerce.sln'
         }
     }
 }
