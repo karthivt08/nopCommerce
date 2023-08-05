@@ -36,7 +36,7 @@ stages {
         steps {
             // for rc build
             
-           sh 'dotnet -c Release build src/NopCommerce.sln'
+           sh 'dotnet build -c Release src/NopCommerce.sln'
         }
     }
 
