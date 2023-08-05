@@ -5,6 +5,7 @@ options {
 timeout(time: 1, unit: 'HOURS')
 
 }
+triggers { pollSCM('*/2 * * * *') }
 
 parameters { 
     booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: 'Need to archive the Build') }
@@ -21,22 +22,31 @@ stages {
     url: 'https://github.com/karthivt08/nopCommerce.git'
         }
     }
+    stage ('Restore stage') {
+
+        steps {
+            // for rc build
+            
+           sh 'dotnet restore src/NopCommerce.sln'
+        }
+    }
 
     stage ('Build stage') {
 
         steps {
+            // for rc build
             
-           sh 'dotnet build src/NopCommerce.sln'
+           sh 'dotnet -c Release build src/NopCommerce.sln'
         }
     }
 
     stage ('archive the files') {
 
         steps {
-            sh 'mkdir nopcommercepckg'
-            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Libraries nopcommercepckg'
-            sh 'cp -r /var/lib/jenkins/workspace/nopcommerce/src/Presentation nopcommercepckg'
-            sh 'zip -qr nopcommercepckg.zip nopcommercepckg'
+            sh 'dotnet public -c Release src/Presentation/Nop.web.csproj -o publish'
+            sh 'mkdir publish/bin publish/logs'
+            sh 'zip -r nopCommerce.zip publish'
+            
         }
 
     }
