@@ -44,7 +44,8 @@ stages {
 
         steps {
 
-            sh 'dotnet publish -c Release src/Presentation/Nop.Web/Nop.web.csproj -o publish'
+            //sh 'dotnet publish -c Release src/Presentation/Nop.Web/Nop.web.csproj -o publish'
+            sh 'dotnet publish /var/lib/jenkins/workspace/nopcommerce/src/Presentation/Nop.Web/Nop.Web.csproj -o publish'
             sh 'mkdir publish/bin publish/logs'
             sh 'zip -r nopCommerce.zip publish'
             archive '**/nopCommerce.zip'
