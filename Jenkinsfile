@@ -27,7 +27,7 @@ stages {
         steps {
             // for rc build
             
-           sh 'docker image build -t nopCommerce:${GIT_COMMIT}'
+           sh 'docker image build -t nopCommerce:latest'
         }
     }
 stage ('Docker Image push') {
