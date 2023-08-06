@@ -1,6 +1,6 @@
 pipeline {
 
-agent any
+agent { label 'Node001' }
 options {
 timeout(time: 1, unit: 'HOURS')
 
@@ -22,36 +22,13 @@ stages {
     url: 'https://github.com/karthivt08/nopCommerce.git'
         }
     }
-    stage ('Restore stage') {
+    stage ('Build Docker Image') {
 
         steps {
             // for rc build
             
-           sh 'dotnet restore src/NopCommerce.sln'
+           sh 'echo "Git commit id ${GIT_COMMIT}'
         }
-    }
-
-    stage ('Build stage') {
-
-        steps {
-            // for rc build
-            
-           sh 'dotnet build -c Release src/NopCommerce.sln'
-        }
-    }
-
-    stage ('archive the files') {
-
-        steps {
-
-            //sh 'dotnet publish -c Release src/Presentation/Nop.Web/Nop.web.csproj -o publish'
-            sh 'dotnet publish /var/lib/jenkins/workspace/nopcommerce/src/Presentation/Nop.Web/Nop.Web.csproj -o publish'
-            sh 'mkdir publish/bin publish/logs'
-            sh 'zip -r nopCommerce.zip publish'
-            archive '**/nopCommerce.zip'
-            
-        }
-
     }
 
 
