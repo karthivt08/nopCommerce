@@ -35,7 +35,7 @@ stage ('Docker Image push') {
         steps {
             // for rc build
             
-           sh 'docker image tag nopcommmerce:${GIT_COMMIT} karthimaga/nopcommerce:${GIT_COMMIT}'
+           sh 'docker image tag nopcommerce:${GIT_COMMIT} karthimaga/nopcommerce:${GIT_COMMIT}'
            sh 'docker image push karthimaga/nopcommerce:${GIT_COMMIT}'
         }
     }
